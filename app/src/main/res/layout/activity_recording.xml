@@ -10,14 +10,26 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:id="@+id/logo"/>
-
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_book_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/book_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/hint_name"
+            android:inputType="text"/>
+    </android.support.design.widget.TextInputLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Record"
         android:textSize="20sp"
         android:id="@+id/record"
-        android:layout_below="@id/record_new_book"
+        android:layout_below="@id/input_book_name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         />
@@ -41,13 +53,34 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         />
+
+    <Button
+        android:id="@+id/select_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/play"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:onClick="onImageGalleryClicked"
+        android:text="Select Photo"
+        android:textSize="20sp" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
         android:textSize="20sp"
         android:id="@+id/save"
-        android:layout_below="@id/play"
+        android:layout_below="@id/select_photo"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         />

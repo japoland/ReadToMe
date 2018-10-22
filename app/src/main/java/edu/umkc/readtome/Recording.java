@@ -1,36 +1,46 @@
 package edu.umkc.readtome;
+
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import java.io.IOException;
-import java.util.Date;
+import android.widget.EditText;
+import android.widget.ImageView;
 
+import java.io.File;
+import java.io.IOException;
 
 public class Recording extends AppCompatActivity {
-    private Button play, stop, record, createdTime;
+    public static final int IMAGE_GALLERY_REQUEST = 20;
+    private Button play, stop, record, select_photo;
     private MediaRecorder myAudioRecorder;
     private String outputFile;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recording);
+        final EditText book_name = (EditText) findViewById(R.id.book_name);
         play = (Button) findViewById(R.id.play);
         stop = (Button) findViewById(R.id.stop);
         record = (Button) findViewById(R.id.record);
         stop.setEnabled(false);
+        imageView = (ImageView) findViewById(R.id.imageView);
         play.setEnabled(false);
-        Date createdTime = new Date();
         outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/rec.3gp";
         myAudioRecorder = new MediaRecorder();
         myAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         myAudioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         myAudioRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
         myAudioRecorder.setOutputFile(outputFile);
+
+
 
         record.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,9 +49,7 @@ public class Recording extends AppCompatActivity {
                     myAudioRecorder.prepare();
                     myAudioRecorder.start();
                 } catch (IllegalStateException ise) {
-                    // make something ...
                 } catch (IOException ioe) {
-                    // make something
                 }
                 record.setEnabled(false);
                 stop.setEnabled(true);
@@ -71,10 +79,18 @@ public class Recording extends AppCompatActivity {
                     mediaPlayer.start();
 
                 } catch (Exception e) {
-                    // make something
                 }
                 stop.setEnabled(true);
             }
         });
+
     }
+public void onImageGalleryClicked(View v){
+Intent photoPickerIntent = new Intent (Intent.ACTION_PICK);
+File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+String pictureDirectoryPath = pictureDirectory.getPath();
+Uri data = Uri.parse(pictureDirectoryPath);
+photoPickerIntent.setDataAndType(data, "image/*");
+startActivityForResult(photoPickerIntent, IMAGE_GALLERY_REQUEST);
+}
 }
