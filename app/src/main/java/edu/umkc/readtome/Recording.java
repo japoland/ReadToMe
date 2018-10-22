@@ -78,7 +78,7 @@ public class Recording extends AppCompatActivity {
                     mediaPlayer.prepare();
                     mediaPlayer.start();
 
-                } catch (Exception e) {
+                } catch (Exception e) { 
                 }
                 stop.setEnabled(true);
             }
