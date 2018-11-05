@@ -17,10 +17,12 @@ import java.io.IOException;
 
 public class Recording extends AppCompatActivity {
     public static final int IMAGE_GALLERY_REQUEST = 20;
-    private Button play, stop, record, select_photo;
+    public static boolean showButton = false;
+    private Button play, stop, record, save;
     private MediaRecorder myAudioRecorder;
     private String outputFile;
     ImageView imageView;
+    public static int book_count=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +35,13 @@ public class Recording extends AppCompatActivity {
         stop.setEnabled(false);
         imageView = (ImageView) findViewById(R.id.imageView);
         play.setEnabled(false);
-        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/rec.3gp";
+        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + R.id.book_name + ".3gp";
         myAudioRecorder = new MediaRecorder();
         myAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         myAudioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         myAudioRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
         myAudioRecorder.setOutputFile(outputFile);
+        save = (Button) findViewById(R.id.save);
 
 
 
@@ -78,9 +81,19 @@ public class Recording extends AppCompatActivity {
                     mediaPlayer.prepare();
                     mediaPlayer.start();
 
-                } catch (Exception e) { 
+                } catch (Exception e) {
                 }
                 stop.setEnabled(true);
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                book_count +=1;
+                showButton=true;
+                finish();
+
             }
         });
 
