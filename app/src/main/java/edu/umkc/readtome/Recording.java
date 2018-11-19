@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -20,7 +19,7 @@ public class Recording extends AppCompatActivity {
     public static boolean showButton = false;
     private Button play, stop, record, save;
     private MediaRecorder myAudioRecorder;
-    private String outputFile;
+    public static String outputFile;
     ImageView imageView;
     public static int book_count=0;
 
@@ -35,15 +34,13 @@ public class Recording extends AppCompatActivity {
         stop.setEnabled(false);
         imageView = (ImageView) findViewById(R.id.imageView);
         play.setEnabled(false);
-        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + R.id.book_name + ".3gp";
+        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/book" + book_count + ".3gp";
         myAudioRecorder = new MediaRecorder();
         myAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         myAudioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         myAudioRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
         myAudioRecorder.setOutputFile(outputFile);
         save = (Button) findViewById(R.id.save);
-
-
 
         record.setOnClickListener(new View.OnClickListener() {
             @Override

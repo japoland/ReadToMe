@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,4 +21,35 @@
         android:id="@+id/record_new_book"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/book1"
+        android:text="Book 1"
+        android:drawableTop="@mipmap/ic_launcher_round"
+        android:layout_below="@id/record_new_book"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/book2"
+        android:text="Book 2"
+        android:drawableTop="@mipmap/ic_launcher_round"
+        android:layout_below="@id/book1"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/book3"
+        android:text="Book 3"
+        android:drawableTop="@mipmap/ic_launcher_round"
+        android:layout_below="@id/book2"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
 </RelativeLayout>
+</ScrollView>
